@@ -32,4 +32,22 @@ public class Movie {
     public int getYear() {
         return this.year;
     }
+
+    public String getImage(){
+        return this.image[1][1];
+    }
+
+    public String getRating(){
+        return this.rating;
+    }
+
+    public String getDescription(){
+        return this.description;
+    }
+
+    public List<String> getGenre() {
+        return this.genre;
+    }
+
 }
+

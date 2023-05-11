@@ -9,9 +9,13 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -23,10 +27,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecyclerViewInterface {
 
     private RecyclerView recyclerView;
-    private MovieAdapter movieAdapter = new MovieAdapter(MainActivity.this);
+    private MovieAdapter movieAdapter = new MovieAdapter(MainActivity.this, this);
     private List<Movie>movieList = new ArrayList<>();
 
     @Override
@@ -62,17 +66,15 @@ public class MainActivity extends AppCompatActivity {
                 String responseBody = response.body().string();
                 Log.d("tag", responseBody);
                 movieList = parseJsonToMovie(responseBody);
-                if(movieList.isEmpty()){
-                    Log.d("emptytagcheck", "Movie list is empty");
-                }
-                else {
-                    runOnUiThread(new Runnable() {
+                if(!movieList.isEmpty()){
+                    Collections.sort(movieList, new Comparator<Movie>() {
                         @Override
-                        public void run() {
-                            movieAdapter.setMovies(movieList);
-                            recyclerView.setAdapter(movieAdapter);
+                        public int compare(Movie m1, Movie m2) {
+                            return m2.getYear() - m1.getYear();
                         }
                     });
+                    movieAdapter.setMovies(movieList);
+                    runOnUiThread(()->recyclerView.setAdapter(movieAdapter));
                 }
             }
 
@@ -82,7 +84,16 @@ public class MainActivity extends AppCompatActivity {
         Gson gson = new Gson();
         Type movieListType = new TypeToken<List<Movie>>(){}.getType();
         List<Movie> movies = gson.fromJson(responseBody, movieListType);
-        Log.d("testing",movies.get(2).getTitle());
         return movies;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(MainActivity.this, MovieDescriptionActivity.class);
+        intent.putExtra("movieName", movieList.get(position).getTitle());
+        List<String> genreList = movieList.get(position).getGenre();
+        String genreString = TextUtils.join(", ", genreList);
+        intent.putExtra("movieGenre", genreString);
+        startActivity(intent);
     }
 }
