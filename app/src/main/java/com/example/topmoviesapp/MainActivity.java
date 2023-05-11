@@ -94,6 +94,13 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewInter
         List<String> genreList = movieList.get(position).getGenre();
         String genreString = TextUtils.join(", ", genreList);
         intent.putExtra("movieGenre", genreString);
+        intent.putExtra("movieRating", movieList.get(position).getRating());
+        intent.putExtra("movieDescription", movieList.get(position).getDescription());
+        intent.putExtra("movieYear", String.valueOf(movieList.get(position).getYear()));
+        intent.putExtra("movieImage", movieList.get(position).getImage());
+        List<String> directorList = movieList.get(position).getDirector();
+        String directorString = TextUtils.join(",", directorList);
+        intent.putExtra("movieDirector", directorString);
         startActivity(intent);
     }
 }

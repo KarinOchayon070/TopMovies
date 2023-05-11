@@ -49,5 +49,10 @@ public class Movie {
         return this.genre;
     }
 
+    public List<String> getDirector() {
+        return this.director;
+    }
+
+
 }
 

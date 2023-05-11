@@ -24,9 +24,9 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:id="@+id/movieImageDescriptionPage"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:padding="10dp"
@@ -39,16 +39,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/movieGenreDescriptionPage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="TextView" />
+            android:text="Movie Release Year" />
 
         <TextView
             android:id="@+id/movieRatingDescriptionPage"
@@ -57,7 +48,25 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="TextView" />
+            android:text="Movie Rating" />
+
+        <TextView
+            android:id="@+id/movieGenreDescriptionPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Movie Genre" />
+
+        <TextView
+            android:id="@+id/movieDirectorDescriptionPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Movie Direcor" />
 
         <TextView
             android:id="@+id/movieSumDescriptionPage"
@@ -65,8 +74,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="TextView"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:text="Movie Description" />
 
     </LinearLayout>
 
